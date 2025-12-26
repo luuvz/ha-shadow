@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique de Vêtements</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <header>
+        <h1>Boutique de Vêtements</h1>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="panier.html">Panier</a>
+        </nav>
+    </header>
+
+    <h2 class="section-title">Nos Produits</h2>
+
+    <!-- Liste des produits -->
+    <div class="products-container">
+
+        <!-- Exemple de produit standard -->
+        <div class="product-card">
+            <img src="images/tshirt.jpg" alt="T-shirt">
+            <h3>T-Shirt</h3>
+            <p class="price">5000 F CFA</p>
+            <button onclick="addToCart('T-Shirt', 5000)">Ajouter au panier</button>
+        </div>
+
+        <div class="product-card">
+            <img src="images/pantalon.jpg" alt="Pantalon">
+            <h3>Pantalon</h3>
+            <p class="price">5000 F CFA</p>
+            <button onclick="addToCart('Pantalon', 5000)">Ajouter au panier</button>
+        </div>
+
+        <!-- Produit tricoté = sur commande -->
+        <div class="product-card">
+            <img src="images/tricot.jpg" alt="Tricot">
+            <h3>Vêtement Tricoté</h3>
+            <p class="price special">Sur commande</p>
+            <button onclick="addToCart('Vêtement tricoté', 'sur_commande')">Commander</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Votre Panier</h1>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="commande.html">Commander</a>
+    </nav>
+</header>
+
+<div class="cart-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="cart-items">
+            <!-- Le JS insère les éléments du panier ici -->
+        </tbody>
+    </table>
+
+    <h3 id="total">Total : 0 F CFA</h3>
+    <a href="commande.html" class="btn-checkout">Passer la commande</a>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finaliser la commande</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Finaliser la Commande</h1>
+</header>
+
+<div class="order-container">
+    <h2>Informations Client</h2>
+
+    <form>
+        <label>Nom complet</label>
+        <input type="text" required>
+
+        <label>Numéro de téléphone</label>
+        <input type="text" required>
+
+        <label>Adresse de livraison</label>
+        <input type="text" required>
+
+        <label>Mode de paiement</label>
+        <select>
+            <option>yas togo</option>
+            <option>Paiement à la livraison</option>
+        </select>
+
+        <button type="submit">Valider la commande</button>
+    </form>
+</div>
+
+</body>
+</html>
