@@ -1,61 +1,63 @@
-ère le panier dans le stockage local, sinon crée un tableau vide
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-// Ajouter un produit au panier
-function addToCart(name, price) {
-    cart.push({ name, price });
-    localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Produit ajouté au panier !");
+// ÉTOILES
+const stars = document.getElementById("stars");
+for (let i = 0; i < 40; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.animationDuration = (5 + Math.random() * 5) + "s";
+    stars.appendChild(star);
 }
 
-// Afficher le panier dans panier.html
-if (window.location.pathname.includes("panier.html")) {
-    let cartItems = document.getElementById("cart-items");
-    let total = 0;
+// PANIER
+let cart = [];
+let total = 0;
 
-    cart.forEach((item, index) => {
-        let priceText = item.price === "sur_commande" ? "Sur commande" : item.price + " F CFA";
-        if (item.price !== "sur_commande") total += item.price;
+function addToCart(name, price) {
+    cart.push({ name, price });
+    total += price;
+    renderCart();
+}
 
-        cartItems.innerHTML += `
-            <tr>
-                <td>${item.name}</td>
-                <td>${priceText}</td>
-                <td><button onclick="removeItem(${index})">Supprimer</button></td>
-            </tr>
+function renderCart() {
+    const cartDiv = document.getElementById("cart");
+    cartDiv.innerHTML = "";
+
+    cart.forEach(item => {
+        cartDiv.innerHTML += `
+            <div class="cart-item">
+                <span>${item.name}</span>
+                <span>${item.price} FCFA</span>
+            </div>
         `;
     });
 
-    document.getElementById("total").innerText = "Total : " + total + " F CFA";
+    document.getElementById("total").innerText = total;
 }
-}// Commander via WhatsApp
-function commander() {
-    const nomClient = document.getElementById('nom').value;
-    const telClient = document.getElementById('telephone').value;
-    const adresseClient = document.getElementById('adresse').value;
 
-    if (!nomClient || !telClient || !adresseClient) {
-        alert('Veuillez remplir toutes vos coordonnées.');
+// WHATSAPP
+function sendWhatsApp() {
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const location = document.getElementById("location").value;
+
+    if (!name || !phone || cart.length === 0) {
+        alert("Veuillez remplir les informations et ajouter un produit.");
         return;
     }
 
-    if (panier.length === 0) {
-        alert('Votre panier est vide.');
-        return;
-    }
+    let message =
+        `Nouvelle commande\n` +
+        `Nom: ${name}\n` +
+        `Téléphone: ${phone}\n` +
+        `Localisation: ${location}\n\n` +
+        `Produits:\n`;
 
-    let message = `Bonjour, je souhaite commander:\n`;
-    panier.forEach(item => {
-        message += `- ${item.nom} : ${item.prix} XOF\n`;
+    cart.forEach(item => {
+        message += `- ${item.name} (${item.price} FCFA)\n`;
     });
-    message += `Total: ${total} XOF\n\n`;
-    message += `Nom: ${nomClient}\nTéléphone: ${telClient}\nAdresse: ${adresseClient}`;
 
-    const urlWhatsApp = `https://wa.me/22890114140?text=${encodeURIComponent(message)}`;
-    window.open(urlWhatsApp, '_blank');
-    }
-// Supprimer un produit
-function removeItem(index) {
-    cart.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    location.reload(); // rafraîc
+    message += `\nTotal: ${total} FCFA`;
+
+    const url = `https://wa.me/22890114140?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+}
