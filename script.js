@@ -1,4 +1,4 @@
-// Récupère le panier dans le stockage local, sinon crée un tableau vide
+ère le panier dans le stockage local, sinon crée un tableau vide
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // Ajouter un produit au panier
@@ -58,5 +58,4 @@ function commander() {
 function removeItem(index) {
     cart.splice(index, 1);
     localStorage.setItem("cart", JSON.stringify(cart));
-    location.reload(); // rafraîchit la page
-}
+    location.reload(); // rafraîc
