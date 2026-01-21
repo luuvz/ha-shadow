@@ -105,26 +105,13 @@
 </header>
 
 <div class="order-container">
-    <h2>Informations Client</h2>
 
-    <form>
-        <label>Nom complet</label>
-        <input type="text" required>
-
-        <label>Numéro de téléphone</label>
-        <input type="text" required>
-
-        <label>Adresse de livraison</label>
-        <input type="text" required>
-
-        <label>Mode de paiement</label>
-        <select>
-            <option>yas togo</option>
-            <option>Paiement à la livraison</option>
-        </select>
-
-        <button type="submit">Valider la commande</button>
-    </form>
+    <h2>Informations client</h2>
+    <input type="text" id="nom" placeholder="Nom complet">
+    <input type="text" id="telephone" placeholder="Téléphone">
+    <input type="text" id="adresse" placeholder="Adresse">
+    <button onclick="commander()">Commander via WhatsApp</button>
+</section>
 </div>
 
 </body>
