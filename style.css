@@ -1,4 +1,4 @@
-{
+boddy {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f4f4;
@@ -103,3 +103,6 @@ form input, form select {
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
+cursor: pointer;
+color: white;
+}
