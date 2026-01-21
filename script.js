@@ -28,7 +28,32 @@ if (window.location.pathname.includes("panier.html")) {
 
     document.getElementById("total").innerText = "Total : " + total + " F CFA";
 }
+}// Commander via WhatsApp
+function commander() {
+    const nomClient = document.getElementById('nom').value;
+    const telClient = document.getElementById('telephone').value;
+    const adresseClient = document.getElementById('adresse').value;
 
+    if (!nomClient || !telClient || !adresseClient) {
+        alert('Veuillez remplir toutes vos coordonnées.');
+        return;
+    }
+
+    if (panier.length === 0) {
+        alert('Votre panier est vide.');
+        return;
+    }
+
+    let message = `Bonjour, je souhaite commander:\n`;
+    panier.forEach(item => {
+        message += `- ${item.nom} : ${item.prix} XOF\n`;
+    });
+    message += `Total: ${total} XOF\n\n`;
+    message += `Nom: ${nomClient}\nTéléphone: ${telClient}\nAdresse: ${adresseClient}`;
+
+    const urlWhatsApp = `https://wa.me/22890114140?text=${encodeURIComponent(message)}`;
+    window.open(urlWhatsApp, '_blank');
+    }
 // Supprimer un produit
 function removeItem(index) {
     cart.splice(index, 1);
